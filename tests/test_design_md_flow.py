@@ -2,6 +2,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import json
 from pathlib import Path
 
 
@@ -58,6 +59,24 @@ class DesignMdFlowTests(unittest.TestCase):
             self.assertIn("acme", result.stdout)
             self.assertIn("1 styles", result.stdout)
 
+    def test_list_json_local_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = self.make_source(tmp)
+            result = self.run_cli("list", "--source", str(source), "--json")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["styles"], ["acme"])
+            self.assertEqual(payload["count"], 1)
+
+    def test_show_json_local_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = self.make_source(tmp)
+            result = self.run_cli("show", "acme", "--source", str(source), "--json")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["slug"], "acme")
+            self.assertEqual(payload["name"], "Acme")
+
     def test_install_and_verify(self):
         with tempfile.TemporaryDirectory() as tmp:
             source = self.make_source(tmp)
@@ -72,6 +91,10 @@ class DesignMdFlowTests(unittest.TestCase):
             self.assertEqual(verify.returncode, 0, verify.stderr)
             self.assertIn("status: ok", verify.stdout)
 
+            verify_json = self.run_cli("verify", "--project", str(project), "--json")
+            self.assertEqual(verify_json.returncode, 0, verify_json.stderr)
+            self.assertEqual(json.loads(verify_json.stdout)["status"], "ok")
+
     def test_install_refuses_overwrite(self):
         with tempfile.TemporaryDirectory() as tmp:
             source = self.make_source(tmp)
@@ -82,6 +105,14 @@ class DesignMdFlowTests(unittest.TestCase):
             result = self.run_cli("install", "acme", "--source", str(source), "--project", str(project))
             self.assertEqual(result.returncode, 2)
             self.assertIn("already exists", result.stderr)
+
+    def test_doctor_offline_json(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            result = self.run_cli("doctor", "--project", tmp, "--offline", "--json")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["status"], "ok")
+            self.assertTrue(payload["checks"]["project_exists"])
 
 
 if __name__ == "__main__":

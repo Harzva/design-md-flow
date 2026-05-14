@@ -3,14 +3,15 @@
   <p><strong>Pick a DESIGN.md style, install it into a project, build against it, screenshot-QA the result, and iterate.</strong></p>
   <p>
     <a href="https://github.com/Harzva/design-md-flow/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Harzva/design-md-flow/ci.yml?branch=main&label=CI" alt="CI status" /></a>
-    <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB" alt="Python 3.9+" />
+    <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB" alt="Python 3.10+" />
     <img src="https://img.shields.io/badge/Agent%20Skill-DESIGN.md-2F8F5B" alt="Agent Skill DESIGN.md" />
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-111827" alt="MIT license" /></a>
   </p>
   <p>
     <a href="#quick-start">Quick Start</a> |
     <a href="#workflow">Workflow</a> |
-    <a href="docs/readme-assets/gallery.html">Preview Gallery</a> |
+    <a href="https://harzva.github.io/design-md-flow/">Live Preview</a> |
+    <a href="https://harzva.github.io/design-md-flow/readme-assets/gallery.html">Preview Gallery</a> |
     <a href="https://getdesign.md/">Browse DESIGN.md styles</a>
   </p>
 </div>
@@ -21,7 +22,8 @@
 </p>
 
 <p align="center">
-  <a href="docs/readme-assets/gallery.html">Preview Gallery</a>
+  <a href="https://harzva.github.io/design-md-flow/">Live Preview</a> |
+  <a href="https://harzva.github.io/design-md-flow/readme-assets/gallery.html">Preview Gallery</a>
 </p>
 
 | Desktop workflow preview | Mobile workflow preview |
@@ -55,6 +57,7 @@ python scripts/design_md_flow.py list
 python scripts/design_md_flow.py show claude
 python scripts/design_md_flow.py install claude --project ../my-app
 python scripts/design_md_flow.py verify --project ../my-app
+python scripts/design_md_flow.py doctor --project ../my-app
 ```
 
 Use a local `awesome-design-md` clone for faster, reproducible installs:
@@ -105,12 +108,32 @@ the selected visual language without copying protected brand assets.
 | Command | Purpose |
 | --- | --- |
 | `python scripts/design_md_flow.py list` | List available style slugs from GitHub. |
+| `python scripts/design_md_flow.py list --json` | Return style slugs as machine-readable JSON. |
 | `python scripts/design_md_flow.py show <slug>` | Print metadata and source links for a style. |
 | `python scripts/design_md_flow.py install <slug> --project <path>` | Install `DESIGN.md` into a project. |
 | `python scripts/design_md_flow.py verify --project <path>` | Check whether the project has a usable `DESIGN.md`. |
+| `python scripts/design_md_flow.py doctor --project <path>` | Check Python, project path, optional source clone, and remote catalog access. |
 | `python scripts/design_md_flow.py open <slug>` | Open the style page on getdesign.md. |
 
 The helper refuses to overwrite an existing `DESIGN.md` unless `--overwrite` is passed.
+
+Machine-readable mode is available on `list`, `show`, `install`, `verify`, and `doctor`:
+
+```bash
+python scripts/design_md_flow.py show vercel --json
+python scripts/design_md_flow.py install vercel --project ../my-app --dry-run --json
+python scripts/design_md_flow.py doctor --project ../my-app --json
+```
+
+## Style Picks
+
+| Product direction | Good starting slugs |
+| --- | --- |
+| Developer tools | `vercel`, `linear.app`, `cursor`, `raycast`, `resend` |
+| AI products | `claude`, `runwayml`, `mistral.ai`, `replicate`, `together.ai` |
+| Data and infrastructure | `supabase`, `mongodb`, `clickhouse`, `sentry`, `hashicorp` |
+| Consumer and commerce | `apple`, `airbnb`, `nike`, `shopify`, `spotify` |
+| Editorial or premium | `wired`, `theverge`, `mastercard`, `bugatti`, `ferrari` |
 
 ## Quality Bar
 
@@ -128,9 +151,11 @@ design-md-flow/
   scripts/design_md_flow.py         # Dependency-free helper CLI
   references/workflow.md            # Deeper workflow guidance
   docs/preview.html                 # Static preview used for README assets
+  docs/index.html                   # GitHub Pages entry point
   docs/readme-assets/               # Generated hero, screenshots, gallery
   tests/                            # Stdlib unit tests
   .github/workflows/ci.yml          # Cross-platform CI
+  .github/workflows/pages.yml       # GitHub Pages deployment for docs/
 ```
 
 ## Development
@@ -139,6 +164,7 @@ design-md-flow/
 python -m unittest discover -s tests
 python scripts/design_md_flow.py --help
 python scripts/design_md_flow.py list
+python scripts/design_md_flow.py doctor --offline
 ```
 
 Regenerate README visuals:

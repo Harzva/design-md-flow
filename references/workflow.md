@@ -20,6 +20,7 @@ Prefer the helper script:
 python scripts/design_md_flow.py list
 python scripts/design_md_flow.py show claude
 python scripts/design_md_flow.py install claude --project .
+python scripts/design_md_flow.py doctor --project .
 ```
 
 Use a local source when available:
@@ -29,6 +30,16 @@ python scripts/design_md_flow.py install claude --project . --source /path/to/aw
 ```
 
 The script does not overwrite an existing DESIGN.md unless `--overwrite` is passed.
+
+Use JSON output when composing this helper with other automation:
+
+```bash
+python scripts/design_md_flow.py list --json
+python scripts/design_md_flow.py show claude --json
+python scripts/design_md_flow.py install claude --project . --dry-run --json
+python scripts/design_md_flow.py verify --project . --json
+python scripts/design_md_flow.py doctor --project . --json
+```
 
 ## Working With Existing Projects
 

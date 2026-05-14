@@ -17,6 +17,7 @@ Run the helper from this skill when the user needs a DESIGN.md installed:
 python scripts/design_md_flow.py list
 python scripts/design_md_flow.py install claude --project /path/to/project
 python scripts/design_md_flow.py verify --project /path/to/project
+python scripts/design_md_flow.py doctor --project /path/to/project
 ```
 
 If a local clone of `VoltAgent/awesome-design-md` exists, prefer it with `--source /path/to/awesome-design-md` for speed and reproducibility.
@@ -61,6 +62,9 @@ as the selected visual language without copying protected brand assets.
 - `scripts/design_md_flow.py show <slug>`: print source metadata and links.
 - `scripts/design_md_flow.py install <slug> --project <path>`: copy or download a `DESIGN.md`.
 - `scripts/design_md_flow.py verify --project <path>`: sanity-check the installed file.
+- `scripts/design_md_flow.py doctor --project <path>`: check project path, optional local source, and remote catalog access.
+
+Use `--json` on `list`, `show`, `install`, `verify`, and `doctor` when another script or agent needs structured output.
 
 ## Output Discipline
 
