@@ -1,0 +1,9 @@
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+docs/readme-assets/.showcase-hero.html

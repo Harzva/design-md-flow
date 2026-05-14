@@ -1,0 +1,75 @@
+{
+  "projectName": "design-md-flow",
+  "root": ".",
+  "type": "static-html",
+  "startCommand": "python -m http.server 8765 --bind 127.0.0.1 --directory docs",
+  "baseUrl": "http://127.0.0.1:8765",
+  "outputDir": "docs/readme-assets",
+  "readme": "README.md",
+  "waitMs": 900,
+  "timeoutMs": 30000,
+  "disableAnimations": true,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 2,
+      "isMobile": true
+    }
+  },
+  "screenshots": [
+    {
+      "id": "desktop-preview",
+      "title": "Desktop workflow preview",
+      "path": "/preview.html",
+      "viewport": "desktop",
+      "fullPage": false
+    },
+    {
+      "id": "mobile-preview",
+      "title": "Mobile workflow preview",
+      "path": "/preview.html",
+      "viewport": "mobile",
+      "fullPage": false
+    }
+  ],
+  "motions": [
+    {
+      "id": "preview-flow",
+      "title": "Preview flow",
+      "path": "/preview.html",
+      "viewport": "desktop",
+      "durationMs": 5000,
+      "steps": [
+        {
+          "wait": 900
+        },
+        {
+          "scroll": 460
+        },
+        {
+          "wait": 1200
+        },
+        {
+          "scroll": -300
+        },
+        {
+          "wait": 1000
+        }
+      ]
+    }
+  ],
+  "hero": {
+    "title": "DesignMD Flow",
+    "subtitle": "A portable DESIGN.md workflow skill: choose a style, install the contract, build, screenshot QA, iterate.",
+    "images": [
+      "desktop-preview",
+      "mobile-preview"
+    ]
+  }
+}

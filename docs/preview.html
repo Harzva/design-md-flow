@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DesignMD Flow Preview</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #667085;
+      --paper: #f8faf7;
+      --surface: #ffffff;
+      --line: #d8dfd6;
+      --green: #2f8f5b;
+      --blue: #2d6cdf;
+      --amber: #d9822b;
+      --charcoal: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8faf7 0%, #eef4ed 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 24px 58px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 52px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      color: #ffffff;
+      background: var(--charcoal);
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .badge {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(420px, 1.04fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    h1 {
+      max-width: 680px;
+      margin: 0;
+      font-size: 76px;
+      line-height: 0.96;
+      letter-spacing: 0;
+      color: var(--charcoal);
+    }
+
+    .lead {
+      max-width: 610px;
+      margin: 24px 0 0;
+      color: #45505f;
+      font-size: 20px;
+      line-height: 1.55;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 17px;
+      border-radius: 8px;
+      border: 1px solid var(--charcoal);
+      color: #ffffff;
+      background: var(--charcoal);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: var(--charcoal);
+      background: transparent;
+    }
+
+    .panel {
+      border: 1px solid #cbd5c7;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(45, 62, 38, 0.14);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      background: #f4f7f2;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .dot:nth-child(2) {
+      background: var(--amber);
+    }
+
+    .dot:nth-child(3) {
+      background: var(--blue);
+      margin-right: 8px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 22px;
+      color: #e5e7eb;
+      background: #111827;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .prompt {
+      color: #86efac;
+    }
+
+    .comment {
+      color: #93a4b8;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .step {
+      min-height: 128px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .step strong {
+      display: block;
+      color: var(--charcoal);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        padding: 28px 18px 40px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 34px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <div class="brand"><span class="mark">D</span> DesignMD Flow</div>
+      <div class="badge-row">
+        <span class="badge">Agent Skill</span>
+        <span class="badge">Python CLI</span>
+        <span class="badge">README QA</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Turn DESIGN.md into a repeatable frontend workflow.</h1>
+        <p class="lead">Choose a design language, install it as a project contract, build against it, screenshot the result, and iterate until the UI is coherent.</p>
+        <div class="actions">
+          <a class="button" href="../README.md">Read the README</a>
+          <a class="button secondary" href="https://getdesign.md/">Browse styles</a>
+        </div>
+      </div>
+
+      <section class="panel" aria-label="Command preview">
+        <div class="panel-header">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          terminal
+        </div>
+        <pre><code><span class="prompt">$</span> python scripts/design_md_flow.py list
+claude
+linear.app
+vercel
+supabase
+
+<span class="prompt">$</span> python scripts/design_md_flow.py install claude --project ./app
+installed claude -> ./app/DESIGN.md
+
+<span class="prompt">$</span> python scripts/design_md_flow.py verify --project ./app
+status: ok
+
+<span class="comment"># brief -> style -> DESIGN.md -> build -> screenshot QA</span></code></pre>
+      </section>
+    </section>
+
+    <section class="flow" aria-label="Workflow">
+      <div class="step"><strong>Pick a style</strong><span>Use getdesign.md slugs or a local awesome-design-md clone.</span></div>
+      <div class="step"><strong>Install DESIGN.md</strong><span>Copy the selected design contract into the target project root.</span></div>
+      <div class="step"><strong>Build with rules</strong><span>Map tokens into the existing app architecture and component system.</span></div>
+      <div class="step"><strong>Verify visually</strong><span>Capture desktop and mobile screenshots, then tighten mismatches.</span></div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-05-14T09:06:53.821Z",
+  "static": [
+    {
+      "id": "desktop-preview",
+      "title": "Desktop workflow preview",
+      "path": "desktop-preview.png",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "id": "mobile-preview",
+      "title": "Mobile workflow preview",
+      "path": "mobile-preview.png",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "motion": [],
+  "hero": {
+    "path": "hero.png",
+    "title": "DesignMD Flow"
+  },
+  "gallery": {
+    "path": "gallery.html"
+  },
+  "projectName": "design-md-flow",
+  "config": "showcase.config.json"
+}

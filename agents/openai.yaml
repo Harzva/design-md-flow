@@ -1,0 +1,4 @@
+interface:
+  display_name: "DesignMD Flow"
+  short_description: "Install and use DESIGN.md files as an AI frontend workflow."
+  default_prompt: "Use DesignMD Flow to choose or install a DESIGN.md style, then build and visually verify a matching frontend."
